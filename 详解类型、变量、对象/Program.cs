@@ -60,7 +60,7 @@ namespace 详解类型_变量_对象
             //Two();
             //Three();
             //Four();
-            //Five();
+            Five();
 
             //int[] x=new int[100];
             //Console.WriteLine(x[0]);
@@ -78,10 +78,11 @@ namespace 详解类型_变量_对象
             long y;
             y = 100L;
 
-            //x = y;
+            //x = y; 隐式转换会报错
+            x = (int)y;
             y = x;
-
             Console.WriteLine(y);
+
         }
         //var与dynamic的区别
         static void Two()
@@ -94,11 +95,11 @@ namespace 详解类型_变量_对象
             y = "hello shit";
             Console.WriteLine(y);
         }
-        //类型类
+        //类型类(利用反射技术实现，获取程序运行过程中内存中的元数据)
         static void Three()
         {
             Type my_type = typeof(Temp);
-
+            
             foreach(var p in my_type.GetProperties())
             {
                 Console.WriteLine(p.Name);
