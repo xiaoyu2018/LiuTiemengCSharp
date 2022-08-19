@@ -13,12 +13,9 @@
 //实例化出的对象可赋值给引用变量，无引用变量。
 
 //2 类的三大成员
-//属性
-//存储数据，组合起来表示类或对象当前状态。
-//方法
-//表示类或对象能做什么。
-//事件
-//类或对象通知其他类或对象的机制。
+//属性：存储数据，组合起来表示类或对象当前状态。
+//方法：表示类或对象能做什么。
+//事件：类或对象通知其他类或对象的机制。
 
 //3 类的静态成员与实例成员
 //静态成员是类的成员。（人类平均身高）
@@ -36,21 +33,28 @@ namespace _2类_对象_类成员简介
             MyClass mm1 = new MyClass();
             MyClass mm2 = mm1;
             //Update是一个实例方法
-            mm1.Update();
-            mm2.Update();
+            mm1.AddOne();
+            mm2.AddOne();
             //引用变量是引用型的变量，而非数值型的
-            change(mm1);
-
+            change1(mm1);
             //WriteLine是一个静态方法
             Console.WriteLine(mm1.num);
+            change2(mm2);
+            Console.WriteLine(mm1.num);
+
 
             Console.WriteLine(Math.PI);
 
         }
 
-        static void change(MyClass mm)
+        static void change1(MyClass mm)
         {
-            mm.Update();
+            mm.AddOne();
+        }
+
+        static void change2(MyClass mm)
+        {
+            mm.num += 2;
         }
 
     }
@@ -58,9 +62,9 @@ namespace _2类_对象_类成员简介
 
     class MyClass
     {
-        internal int num=1;
+        internal int num { get; set; }
 
-        internal void Update()
+        internal void AddOne()
         {
             ++num;
         }
