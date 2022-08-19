@@ -65,89 +65,77 @@ namespace _3基本元素_类型_变量_方法_算法
         }
     }
 
-    //二叉树
-    class Btree
-    {
-        public int value { get; set; }
-        public Btree lc { get; set; }
-        public Btree rc { get; set; }
-
-        public Btree(int num)
-        {
-            value = num;
-        }
-    }
-
-    abstract class BTreeWithOO
+    //二叉树节点
+    abstract class BaseNode
     {
         public string value { get; set; }
+        public BaseNode lc { get; set; }
+        public BaseNode rc { get; set; }
 
-        public BTreeWithOO(string v)
+        public BaseNode(string v)
         {
             value = v;
         }
+        public BaseNode()
+        {
+            value="";
+            lc=rc=null;
+        }
 
-        public abstract void Add(BTreeWithOO bTreeWithOO);
-
-        public abstract void Remove(BTreeWithOO bTreeWithOO);
-
+        public abstract void AddNode(BaseNode node);
+        public void RemoveVal(string val)
+        {
+            if (value == val)
+                value = "";
+        }
         public abstract void Show();
+
     }
 
-    class ConcreateTree : BTreeWithOO
+
+    class InternalNode : BaseNode
     {
 
-        BTreeWithOO lc;
-        BTreeWithOO rc;
 
-
-        public ConcreateTree(string v):base(v)
+        public InternalNode(string v):base(v)
         {
 
         }
-        public override void Add(BTreeWithOO bTreeWithOO)
+        public override void AddNode(BaseNode node)
         {
             if (lc == null)
-                lc = bTreeWithOO;
+                lc = node;
             else if (rc == null)
-                rc = bTreeWithOO;
+                rc = node;
             else
                 Console.WriteLine("this Node has already have two children!");
                 
         }
 
-        public override void Remove(BTreeWithOO bTreeWithOO)
-        {
-            throw new NotImplementedException();
-        }
 
         public override void Show()
         {
-            Console.WriteLine($"{value} ");
+            Console.Write($"{value} ");
             lc.Show();
             rc.Show();
         }
     }
 
-    class Leave : BTreeWithOO
+    class Leave : BaseNode
     {
         public Leave(string v):base(v)
         {
 
         }
-        public override void Add(BTreeWithOO bTreeWithOO)
+        public override void AddNode(BaseNode node)
         {
             Console.WriteLine("you cannot add a node to one leave!");
         }
 
-        public override void Remove(BTreeWithOO bTreeWithOO)
-        {
-            throw new NotImplementedException();
-        }
-
+        //叶子节点不需输出子节点
         public override void Show()
         {
-            Console.WriteLine($"{value} ");
+            Console.Write($"{value} ");
         }
     }
     class Program
@@ -170,31 +158,31 @@ namespace _3基本元素_类型_变量_方法_算法
 
             //PreOrder(bt);
 
-            //TestOOTree();
+            //TestBTree();
 
-            //int[] a = { 5, 5, 6, 4, 3, 2, 8, 1, 9 };
+            int[] a = { 5, 5, 6, 4, 3, 2, 8, 1, 9 };
 
-            //MySort.QuickSort(a, 0, a.Length-1);
+            MySort.QuickSort(a, 0, a.Length - 1);
 
-            //foreach (var item in a)
-            //{
-            //    Console.Write(item.ToString()+" ");
-            //}
+            foreach (var item in a)
+            {
+                Console.Write(item.ToString() + " ");
+            }
         }
 
-        static void TestOOTree()
+        static void TestBTree()
         {
-            ConcreateTree root = new ConcreateTree("a");
-            ConcreateTree branch = new ConcreateTree("b");
+            BaseNode root = new InternalNode("a");
+            BaseNode branch = new InternalNode("b");
             Leave l1 = new Leave("c");
             Leave l2 = new Leave("d");
             Leave l3 = new Leave("e");
 
-            root.Add(branch);
-            root.Add(l3);
+            root.AddNode(branch);
+            root.AddNode(l3);
 
-            branch.Add(l1);
-            branch.Add(l2);
+            branch.AddNode(l1);
+            branch.AddNode(l2);
 
             root.Show();
         }
@@ -241,33 +229,5 @@ namespace _3基本元素_类型_变量_方法_算法
             return Fibo(n - 1) + Fibo(n - 2);
         }
 
-        //创建二叉树
-        static Btree CreateBTree()
-        {
-            string x=Console.ReadLine();
-            int num = int.Parse(x);
-
-            if (num!=-1)
-            {
-                Btree btree = new Btree(num);
-                btree.lc = CreateBTree();
-                btree.rc = CreateBTree();
-
-                return btree;
-            }
-
-            return null;
-        }
-
-        static void PreOrder(Btree bt)
-        {
-            if(bt!=null)
-            {
-                Console.Write(bt.value.ToString()+" ");
-                PreOrder(bt.lc);
-                PreOrder(bt.rc);
-
-            }
-        }
     }
 }
