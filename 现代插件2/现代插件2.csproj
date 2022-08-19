@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Baby Stroller.SDK">
+      <HintPath>..\Baby Stroller.SDK\bin\Debug\netcoreapp3.1\Baby Stroller.SDK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
