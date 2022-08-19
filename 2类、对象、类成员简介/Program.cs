@@ -30,17 +30,17 @@ namespace _2类_对象_类成员简介
         static void Main(string[] args)
         {
             //实例化对象，引用变量mm指向实例化出的对象。
-            MyClass mm1 = new MyClass();
-            MyClass mm2 = mm1;
+            MyClass obj1 = new MyClass();
+            MyClass obj2 = obj1;
             //Update是一个实例方法
-            mm1.AddOne();
-            mm2.AddOne();
+            obj1.AddOne();
+            obj2.AddOne();
             //引用变量是引用型的变量，而非数值型的
-            change1(mm1);
+            change1(obj1);
             //WriteLine是一个静态方法
-            Console.WriteLine(mm1.num);
-            change2(mm2);
-            Console.WriteLine(mm1.num);
+            Console.WriteLine(obj1.num);
+            change2(obj2);
+            Console.WriteLine(obj1.num);
 
 
             Console.WriteLine(Math.PI);

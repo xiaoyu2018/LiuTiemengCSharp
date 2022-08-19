@@ -164,24 +164,22 @@ namespace _3基本元素_类型_变量_方法_算法
             Console.WriteLine(a);*/
 
             //Console.WriteLine(GetToday());
-            //DiGui(10);
+            //Console.WriteLine(Fibo(5));
 
             //Btree bt = CreateBTree();
 
             //PreOrder(bt);
 
-            //数据类型();
-
             //TestOOTree();
 
-            int[] a = { 5, 5, 6, 4, 3, 2, 8, 1, 9 };
+            //int[] a = { 5, 5, 6, 4, 3, 2, 8, 1, 9 };
 
-            MySort.QuickSort(a, 0, a.Length-1);
+            //MySort.QuickSort(a, 0, a.Length-1);
 
-            foreach (var item in a)
-            {
-                Console.Write(item.ToString()+" ");
-            }
+            //foreach (var item in a)
+            //{
+            //    Console.Write(item.ToString()+" ");
+            //}
         }
 
         static void TestOOTree()
@@ -215,16 +213,17 @@ namespace _3基本元素_类型_变量_方法_算法
         static void 数据类型()
         {
             var x = 3;
-            var y = 3.0F;
+            var y = 3.0f;
+            //默认是双精度
             var z = 3.0;
             Console.WriteLine($"{x.GetType()}{y.GetType()}{z.GetType()}");
         }
         static void 字面值()
         {
             int x = 2;
-            long y = 3L;
-            //此处F不可省略，3.0默认是双精度浮点数
-            float xx = 3.0F;
+            long y = 3l;
+            //此处f不可省略，3.0默认是双精度浮点数
+            float xx = 3.0f;
             double yy = 3.0;
             char c = 'c';
             String s = "sss";
@@ -233,12 +232,13 @@ namespace _3基本元素_类型_变量_方法_算法
             Console.WriteLine(str);
         }
 
-        static void DiGui(int x)
+        static int Fibo(int n)
         {
-            if (x < 1)
-                return;
-            DiGui(x - 1);
-            Console.WriteLine(x);
+            if(n < 1)
+                return 0;
+            if (n == 1 || n == 2)
+                return 1;
+            return Fibo(n - 1) + Fibo(n - 2);
         }
 
         //创建二叉树
