@@ -31,18 +31,15 @@ namespace _6操作符详解
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
 
             //One();
-            //Two();
+            Two();
             //Three();
             //Four();
             //Five();
-
-
-            Hunam h = new Teacher();
-            Console.WriteLine(h is Teacher);
         }
 
         //直接调用方法
@@ -78,7 +75,7 @@ namespace _6操作符详解
                 Console.WriteLine(p.name);
             }
 
-            //操作符重载了，不会影响其他的功能
+            //操作符重载，不会影响其他的功能（操作符随数据类型不同而具有不同功能）
             Console.WriteLine(1+2);
         }
 
@@ -163,7 +160,7 @@ namespace _6操作符详解
             catch (OverflowException e)
             {
 
-                Console.WriteLine("溢出！！！");
+                Console.WriteLine(e.Message);
             }
 
             //delegate是为了实现lambda表达式，现在已经过时了。delegate现在常当作关键字来声明委托。
@@ -286,6 +283,7 @@ namespace _6操作符详解
     {
         public int age;
 
+        //强制转换Stone类型为Monky类型
         public static explicit operator Monky(Stone stone)
         {
             Monky monky = new Monky();
@@ -315,7 +313,7 @@ namespace _6操作符详解
     }
     class Teacher:Hunam
     {
-        new public void Teach()
+        public void Teach()
         {
             Console.WriteLine("Teach!");
         }
@@ -369,24 +367,11 @@ namespace _6操作符详解
         }
 
         //变为操作符
-        //参数之一必须为包含类型
+        //参数之一必须为为当前class的类型
         public static List<Person> operator +(Person p1, Person p2)
         {
-            List<Person> people = new List<Person>();
 
-            people.Add(p1);
-            people.Add(p2);
-
-            for (int i = 0; i < 11; i++)
-            {
-                Person child = new Person();
-
-                child.name = p1.name + "'s " + i.ToString();
-
-                people.Add(child);
-            }
-
-            return people;
+            return Person.GetMarry(p1,p2);
         }
     }
 }
