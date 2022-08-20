@@ -30,10 +30,7 @@ namespace _7表达式_语句详解
         {
             //Three();
 
-            int a = 50;
-            int b = 50;
-            int score = 0;
-            bool flag = true;
+            Two();
            
         }
 
