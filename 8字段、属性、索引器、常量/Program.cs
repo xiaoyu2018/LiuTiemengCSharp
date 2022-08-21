@@ -96,6 +96,7 @@ namespace _8字段_属性_索引器_常量
     class SSStudent
     {
         private Dictionary<string, int> score_dic = new Dictionary<string, int>();
+        //索引器的定义
         public int? this[string subject]
         {
             get
@@ -125,13 +126,14 @@ namespace _8字段_属性_索引器_常量
     //常量相关
     class WASPEC
     {
+        //附属于类，而非实例
         public const string WEBSITEURL = "http://www.shit.com";
     }
 
     //属性相关
     class SSstudent
     {
-        //实例完整声明
+        //完整声明
         private int age;
         public int Age
         {
@@ -185,7 +187,7 @@ namespace _8字段_属性_索引器_常量
     //字段相关
     class Student
     {
-        //在声明时初始化等价于在实例构造函数中赋值。
+        //在声明时初始化等价于在实例构造函数中赋值
         //实例字段在每次创建对象时都会调用初始化器
         public int age = 0;
         public int score;

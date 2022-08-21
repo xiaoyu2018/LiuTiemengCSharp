@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31402.337
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1初识类与命名空间", "1初识类与命名空间\1初识类与命名空间.csproj", "{D608CBDB-459C-4FFE-A310-DEB446B6C003}"
 EndProject
@@ -27,8 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10委托", "10委托\10委�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11事件", "11事件\11事件.csproj", "{A65D5B9E-DC90-4DA1-B688-54DE698AFA0B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wpf事件", "Wpf事件\Wpf事件.csproj", "{266BB9DB-2D6F-4517-85FE-62A00A9369F6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12类详解", "12什么是类\12类详解.csproj", "{7435076D-5DA9-4E6C-B913-521233492DE8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{E0109276-8E56-4054-B5DE-F33930240C06}"
@@ -51,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15泛型、partial类、枚
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16Lambda表达式", "16Lambda表达式\16Lambda表达式.csproj", "{84FA67B3-D7DE-4786-B80B-7639A2C50253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "属性与特性", "属性与特性\属性与特性.csproj", "{8C23B360-ED2A-436B-B2DC-8F914EC536F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17属性与特性", "属性与特性\17属性与特性.csproj", "{8C23B360-ED2A-436B-B2DC-8F914EC536F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,10 +105,6 @@ Global
 		{A65D5B9E-DC90-4DA1-B688-54DE698AFA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A65D5B9E-DC90-4DA1-B688-54DE698AFA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A65D5B9E-DC90-4DA1-B688-54DE698AFA0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{266BB9DB-2D6F-4517-85FE-62A00A9369F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{266BB9DB-2D6F-4517-85FE-62A00A9369F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{266BB9DB-2D6F-4517-85FE-62A00A9369F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{266BB9DB-2D6F-4517-85FE-62A00A9369F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7435076D-5DA9-4E6C-B913-521233492DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7435076D-5DA9-4E6C-B913-521233492DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7435076D-5DA9-4E6C-B913-521233492DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU

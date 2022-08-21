@@ -33,13 +33,44 @@
 
 namespace _9传值输出引用数组具名可选参数_扩展方法
 {
+
+    //运算符重载
+    class Person
+    {
+        public int Age { get; set; }
+        public string Name { get; set; }
+
+        public Person(int age,string name)
+        {
+            Name= name;
+            Age= age;
+        }
+
+        public static Person operator +(Person p1,Person p2)
+        {
+            return new Person(0, p1.Name + p2.Name);
+        }
+
+    }
+    //扩展方法
+    static class PersonExtension
+    {
+        public static void Run(this Person person)
+        {
+            Console.WriteLine($"{person.Name} is running...");
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
             //Three();
+            //One();
 
-            
+            Console.WriteLine((new Person(29, "张三") + new Person(25, "李四")).Name);
+
+            new Person(29, "张三").Run();
         }
 
         //参数
@@ -57,10 +88,12 @@ namespace _9传值输出引用数组具名可选参数_扩展方法
             Console.WriteLine(student.Name);
             Console.WriteLine(student.GetHashCode());
             ChangeName(student);
+            Console.WriteLine(student.GetHashCode());
             Console.WriteLine(student.Name);
 
             //值类型引用参数
-            int x = 1;
+            int x = 2;
+            Console.WriteLine($"实参x:{x.GetHashCode()}");
             //调用时也要用ref关键字
             IWantSideEffect(ref x);
             Console.WriteLine(x);
@@ -108,7 +141,7 @@ namespace _9传值输出引用数组具名可选参数_扩展方法
             PrintInfo(age: 11, name: "shit");
         }
 
-        //可选方法
+        //扩展方法
         static void Three()
         {
             double x = 3.1415926;
@@ -140,6 +173,7 @@ namespace _9传值输出引用数组具名可选参数_扩展方法
         //配合值类型引用参数
         static void IWantSideEffect(ref int x)
         {
+            Console.WriteLine($"形参x:{x.GetHashCode()}");
             x += 100;
         }
 
@@ -161,6 +195,7 @@ namespace _9传值输出引用数组具名可选参数_扩展方法
         //配合数组参数
         static int CaculateSum(params int[] a)
         {
+            
             int s = 0;
             foreach (int i in a)
             {
@@ -202,11 +237,4 @@ namespace _9传值输出引用数组具名可选参数_扩展方法
         }
     }
 
-    static class FloatExtension
-    {
-        public static float Round(this float a,int b)
-        {
-            return (float)Math.Round((double)a, b);
-        }
-    }
 }
