@@ -20,8 +20,11 @@ namespace _16Lambda表达式
             //a1.Invoke();
             //a2(1, 2);
             //Console.WriteLine(f(3,4));
-
+            
+            //委托类型推断在c#10.0以上支持
+            //var test = () => { Console.WriteLine(); };
             One((a, b) => { return a * b; });
+            One((a, b) => { return (int)Math.Pow(a, b); });
         }
 
         static void One(Func<int,int,int> func)

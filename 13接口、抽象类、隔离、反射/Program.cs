@@ -111,8 +111,6 @@ namespace _13接口_抽象类_隔离_反射
         {
             Console.WriteLine("car is running");
         }
-
-        
     }
 
     class Truck: Vehicle
@@ -124,7 +122,7 @@ namespace _13接口_抽象类_隔离_反射
  
     }
 
-    //一个抽象类中，所有成员都是抽象的，当然不能有字段（字段必然是具体的）
+    //一个抽象类中，如果所有成员都是抽象的，当然不能有字段（字段必然是具体的）
     //就是一个纯抽象类，可以当成一个接口
     abstract class VehicleBase
     {

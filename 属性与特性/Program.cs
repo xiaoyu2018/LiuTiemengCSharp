@@ -21,7 +21,8 @@ namespace 属性与特性
     {
         static void Main(string[] args)
         {
-            Two();
+            //Two();
+            One();
         }
         static void One()
         {
@@ -34,7 +35,7 @@ namespace 属性与特性
         static void Two()
         {
             var t = typeof(Ship);
-
+            
             foreach (var i in t.GetCustomAttributes(false))
             {
                 Console.WriteLine((i as Oyster).Age);

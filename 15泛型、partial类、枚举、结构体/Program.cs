@@ -37,6 +37,8 @@ namespace _15泛型_partial类_枚举_结构体
         static void Main(string[] args)
         {
             Six();
+            //Car car = new Car();
+            //car.Stop();
         }
         //泛型类
         static void One()
@@ -203,6 +205,7 @@ namespace _15泛型_partial类_枚举_结构体
     //这个类不是泛型类
     class SStudent : IUnique<string>
     {
+        //实现接口中的属性
         public string ID { get; set; }
     }
 
@@ -213,12 +216,19 @@ namespace _15泛型_partial类_枚举_结构体
         public int Speed { get; set; }
     }
     //partial类必须都在同一个名称空间
-    //不需要在同一个文件中
+    //不需要在同一个文件中，这种添加额外方法的情况也可使用扩展方法实现
     public partial class Car
     {
         public void Run()
         {
             Console.WriteLine("car is running");
+        }
+    }
+    public static class CarExtension
+    {
+        public static void Stop(this Car car)
+        {
+            Console.WriteLine("car is stoped");
         }
     }
 

@@ -150,6 +150,9 @@ namespace _14SOLID_反射
             //主体厂商直接引用BabyStroller.SDK项目即可
             //插件厂商引用响应dll文件，因为肯定不希望插件厂商更改SDK内容
 
+            //引用dll文件的项目会显示在依赖项的assemblies中
+            //引用项目文件的的项目会显示在依赖项中的projects中
+
             //主体程序中，加载各类插件，拿到插件在内存中运行的各种方法名等
             //首先获取插件文件夹
             var folder = Path.Combine(Environment.CurrentDirectory, "Animals");
@@ -191,7 +194,7 @@ namespace _14SOLID_反射
                     object o = Activator.CreateInstance(t);
                     MethodInfo VMI = t.GetMethod("Voice");
 
-                    //此处可以直接类型转换
+                    //此处可以直接类型转换,因为有了接口规范
                     IAnimals animal = o as IAnimals;
                     animal.Voice(times);
                     
@@ -235,6 +238,7 @@ namespace _14SOLID_反射
             Console.WriteLine("Car is running");
         }
     }
+
     class Truck : IVehicle
     {
         public void Run()
