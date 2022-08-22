@@ -13,10 +13,10 @@
 //类代表现实世界中的“种类”
 
 //2 类的声明和访问级别
-//c#中可以出现类声明的位置：名称空间中（99%以上）、显式名称空间之外、类里（成员类）
+//c#中可以出现类声明的位置：名称空间中（99%以上）、显式名称空间之外、其他类内部（成员类）
 //在c#中声明即定义
 //类修饰符：new、public、protected、internal、private、abstract、sealed、static
-//类的访问控制：public：对依赖的项目可见、internal（默认）：对依赖的项目不可见，在自己的项目内自由访问
+//类的访问控制：public：对所有依赖/被依赖的项目可见、internal（默认）：对依赖的项目不可见，在自己的项目内自由访问
 
 //3 类的继承和类成员访问
 //类的继承可看作派生类在基类基础上在功能上的横向（对类成员个数的扩充）和纵向（对类成员的重写）扩展
@@ -47,13 +47,14 @@ namespace _12什么是类
 
         static void Main(string[] args)
         {
-            //Four();
-            One();
+            Four();
+            //One();
+            //Two();
         }
         //类的声明和访问级别
         static void One()
         {
-            Student s1 = new Student() { ID = 1, Name = "赵华琼" };
+            Student s1 = new Student() { ID = 1, Name = "赵琼" };
             s1.Reprot();
 
             //简单反射
@@ -107,8 +108,9 @@ namespace _12什么是类
             //重写产生的多态，调用的是Car类的Run方法
             vehicle.Run();
 
-            Vehicle v2 = new RaceCar("tt");
-            v2.Run();
+            //调用基类上已被其他方法重写的方法。
+            car.BaseRun();
+            car.BaseOp();
         }
     }
 
@@ -121,7 +123,7 @@ namespace _12什么是类
         {
             get { return _speed; }
 
-            set { _speed = value; } 
+            set { _speed = (value<240&&value>0)?value:0; } 
         }
 
         public void SomeOp()
@@ -135,11 +137,11 @@ namespace _12什么是类
             _speed = 100;
         }
         
+        public string Owner { get; set; }
         public Vehicle(string owner)
         {
             this.Owner = owner;
         }
-        public string Owner { get; set; }
     }
 
     //子类访问级别不可超过父类
@@ -154,6 +156,14 @@ namespace _12什么是类
            //所以不用再赋值
         }
 
+        public void BaseOp()
+        {
+            base.SomeOp();
+        }
+        public void BaseRun()
+        {
+            base.Run();
+        }
         public void ShowBaseOwner()
         {
             //base指的是基类的一个实例
@@ -206,7 +216,7 @@ namespace _12什么是类
 
         public Student()
         {
-            Console.WriteLine("I'm construtor!");
+            Console.WriteLine("I'm instance construtor!");
         }
 
         ~Student()
