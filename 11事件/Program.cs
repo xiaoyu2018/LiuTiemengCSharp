@@ -32,7 +32,7 @@ using System.Timers;
 
 //2 事件的应用
 //C#已经为我们封装好了很多事件，如按钮点击事件等，这个事件由用户点击鼠标，操作系统再向按钮传递信息，按钮类实例再发出事件通知
-//使用事件时，事件的五个部分可以有不同的组合方式，如：事件拥有者和事件响应者完全独立、事件的拥有者同时也是时间的响应者、
+//使用事件时，事件的五个部分可以有不同的组合方式，如：事件拥有者和事件响应者完全独立、事件的拥有者同时也是事件的响应者、
 //事件的拥有者是事件响应者的一个字段成员（按钮和窗口）、事件的响应者是事件拥有者的一个字段成员（非重点），详见代码
 //本部分只介绍了事件的使用，并未提及事件如何声明
 //一个事件可以挂接多个事件处理器，一个事件处理器也可被多个事件挂接
@@ -47,7 +47,7 @@ using System.Timers;
 //用于声明事件的委托类型的命名规定：用于声明FOO事件的委托，一般命名为FooEventHandler
 //FooEventHandler的参数一般有两个，第一个为Object类型，名为sender，实际上就是事件的拥有者
 //                               第二个为EventArgs类的派生类，名为e，即事件参数
-//直接触发时间的方法一般命名为OnFoo，访问级别一般要设置为protected，不能为public，否则又有可能借刀杀人了。
+//直接触发事件的方法一般命名为OnFoo，访问级别一般要设置为protected，不能为public，否则又有可能借刀杀人了。
 //事件的命名：带有时态的动词或动词短语，如click、closed、closing
 //属性与事件：
 //属性不是字段，是字段的包装器，保护字段不被滥用
@@ -57,9 +57,12 @@ namespace _11事件
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            Four();
+            //Four();
+            TCustomer customer = new TCustomer();
+            customer.Activate();
         }
 
         //事件的应用:事件拥有者和事件响应者完全独立
@@ -112,7 +115,7 @@ namespace _11事件
 
             customer.Aciton();
             
-            //借刀杀人，给customer点了一泡屎
+            //借刀杀人
             //Customer joker = new Customer();
             //joker.Order += waiter.Action;
             //joker.Order.Invoke(customer, new OrderEventArgs() { DishName = "shit" , Size = "large" });

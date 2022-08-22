@@ -48,18 +48,22 @@ namespace _10委托
     {
         static void Main(string[] args)
         {
-            Six();
+            //Six();
+            //Two();
+
+            BoxFac fac = new BoxFac();
+            fac.WrapWithLog(new PizzaFac(), new Logger());
         }
 
-        //由c#类库准备好的，最常用两个委托Action和Func
+        //由c#类库准备好的，两个泛型委托Action和Func
         static void One()
         {
             Calculator calculator = new Calculator();
             
             //Action用于接收有或无参数，无返回值的方法
-            Action action = new Action(calculator.Reprot);
+            Action action = new Action(Calculator.Reprot);
             //直接调用
-            calculator.Reprot();
+            Calculator.Reprot();
             //间接调用
             action.Invoke();
             action();
@@ -80,15 +84,17 @@ namespace _10委托
         static void Two()
         {
             Calculator calculator = new Calculator();
-            Calc calc1 = new Calc(calculator.Add);
-            Calc calc2 = new Calc(calculator.Sub);
-            Calc calc3 = new Calc(calculator.Multi);
-            Calc calc4 = new Calc(calculator.Div);
+            Calc calc = new Calc(calculator.Add);
+            calc +=calculator.Sub;
+            calc +=calculator.Add;
+            calc += calculator.Multi;
+            calc += calculator.Div;
             double x = 100;
             double y = 200;
             double z = 0;
 
-            z = calc1.Invoke(x, y);
+            //返回最后订阅的函数的返回值
+            z = calc.Invoke(x, y);
             Console.WriteLine(z);
 
         }
@@ -143,7 +149,7 @@ namespace _10委托
             action();
         }
 
-        //多线程
+        //多线程（三个学生同时写作业）
         static void Six()
         {
             Student s1 = new Student() { ID = 1, PenColor = ConsoleColor.Red };
@@ -154,19 +160,13 @@ namespace _10委托
             Action a2 = new Action(s2.DoHomeWork);
             Action a3 = new Action(s3.DoHomeWork);
 
-            //每个BeginInvoke都会开启一个新线程
-            //此异步编程方法已不受支持，无法使用
-            //a1.BeginInvoke(null, null);
-            //a2.BeginInvoke(null, null);
-            //a3.BeginInvoke(null, null);
-
             //使用thread显式异步调用
-            Thread thread1 = new Thread(new ThreadStart(a1));
-            Thread thread2 = new Thread(new ThreadStart(s2.DoHomeWork));
-            Thread thread3 = new Thread(new ThreadStart(a3));
-            thread1.Start();
-            thread2.Start();
-            thread3.Start();
+            //Thread thread1 = new Thread(new ThreadStart(a1));
+            //Thread thread2 = new Thread(new ThreadStart(s2.DoHomeWork));
+            //Thread thread3 = new Thread(new ThreadStart(a3));
+            //thread1.Start();
+            //thread2.Start();
+            //thread3.Start();
 
             //使用Task显式异步调用,推荐使用Task
             Task t1 = new Task(new Action(s1.DoHomeWork));
@@ -177,7 +177,7 @@ namespace _10委托
             t3.Start();
 
 
-
+            Console.Read();
 
         }
     }
@@ -185,6 +185,7 @@ namespace _10委托
     //多播相关
     class Student
     {
+        private static bool _mutex = true;
         public int ID { get; set; }
         public ConsoleColor PenColor { get; set; }
 
@@ -192,33 +193,17 @@ namespace _10委托
         {
             for (int i = 0; i < 3; i++)
             {
+                while (!_mutex) ;
+                _mutex = false;
                 Console.ForegroundColor = this.PenColor;
                 Console.WriteLine($"Student{ID} doing homework {i} hours");
-                Thread.Sleep(500);
+                _mutex = true;
+                Thread.Sleep(1000);
             }
         }
     }
 
-    //模板方法及回调方法相关
-    class Logger
-    {
-        public void Log(Product product)
-        {
-            //披萨不会记账
-            if (product.Price < 5)
-                return;
-            Console.WriteLine($"Product {product.Name} craeted at {DateTime.UtcNow} is ${product.Price}");
-        }
-    }
-    class Product
-    {
-        public string Name { get; set; }
-        public double Price { get; set; }
-    }
-    class Box
-    {
-        public Product Product { get; set; }
-    }
+    
     class WrapFctory
     {
         //模板方法
@@ -263,7 +248,7 @@ namespace _10委托
     //委托声明相关
     class Calculator
     {
-        public void Reprot()
+        public static void Reprot()
         {
             Console.WriteLine("I have 3 methods.");
         }
